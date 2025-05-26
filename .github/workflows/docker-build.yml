@@ -21,9 +21,10 @@ jobs:
       - name: Build new image with mock in it and Load it into Docker for testing
         uses: docker/build-push-action@v6
         with:
-          tags: mockenv:latest
+          tags: mockenv:latest-s390x
           file: mock/.github/workflows/Dockerfile
           context: .
+          platforms: linux/s390x
           pull: true
           push: false
           load: true
