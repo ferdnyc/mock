@@ -29,8 +29,6 @@ jobs:
           push: false
           load: true
 
-      - name: Enable kvm for nested virtualization and run guest
+      - name: Run guest under emulation
         run: |
-          sudo usermod -G libvirt $USER
-          sudo -E bash -C 'exec su -l '$USER
-          docker run --platform linux/s390x --privileged --cap-add=SYS_ADMIN -t --rm mockenv:latest sh -c "mock --root /etc/mock/fedora-rawhide-s390x.cfg --shell echo hello world"
+          docker run --platform linux/s390x --privileged --cap-add=SYS_ADMIN -t --rm mockenv:latest-s390x sh -c "mock --root /etc/mock/fedora-rawhide-s390x.cfg --shell echo hello world"
